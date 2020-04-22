@@ -8,11 +8,18 @@ export default () => {
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/posts')
       .then(response => {
+        // Add fake author field
+        response.data.forEach(post => {
+          post.author = "Bakyt";
+        });
+
         setPosts(response.data);
       });
   }, []);
 
-  const postsOutput = posts.map(post => <Post key={post.id} title={post.title} />);
+  const postsOutput = posts.map(
+    post => <Post key={post.id} title={post.title} author={post.author} />
+  );
 
   return (
     <div className="Blog">

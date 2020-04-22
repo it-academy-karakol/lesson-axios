@@ -1,3 +1,8 @@
+.App {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .Post {
   box-shadow: 0 0 5px rgba(0, 0, 0, .3);
   width: 250px;
@@ -17,5 +22,12 @@
 }
 .Blog h1 {
   width: 100%;
+  text-align: center;
+}
+.FullPost {
+  width: 100%;
+  margin: .5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+  padding: 0 1rem;
   text-align: center;
 }

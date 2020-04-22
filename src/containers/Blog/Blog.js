@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Post from '../../components/Post';
 import FullPost from './FullPost/FullPost';
+import NewPost from './NewPost/NewPost';
 
 export default () => {
   const [posts, setPosts] = useState([]);
@@ -36,6 +37,7 @@ export default () => {
       <h1>Blog</h1>
       {postsOutput}
       <FullPost id={selectedPostId} />
+      <NewPost />
     </div>
   );
 }

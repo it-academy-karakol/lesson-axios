@@ -31,3 +31,20 @@
   padding: 0 1rem;
   text-align: center;
 }
+
+.NewPost {
+  width: 100%;
+  margin: .5rem;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+  padding: 1rem;
+}
+.NewPost input,
+.NewPost textarea {
+  width: 100%;
+  border: 1px solid darkgrey;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .2) inset;
+  padding: .5rem;
+  border-radius: .5rem;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}

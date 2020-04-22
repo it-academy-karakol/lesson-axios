@@ -8,6 +8,13 @@ export default () => {
   const [posts, setPosts] = useState([]);
   const [selectedPostId, setSelectedPostId] = useState(null);
 
+  function deletePost() {
+    axios.delete('https://jsonplaceholder.typicode.com/posts/' + selectedPostId)
+      .then(response => {
+        console.log(response);
+      });
+  }
+
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/posts')
       .then(response => {
@@ -36,7 +43,7 @@ export default () => {
     <div className="Blog">
       <h1>Blog</h1>
       {postsOutput}
-      <FullPost id={selectedPostId} />
+      <FullPost id={selectedPostId} deletePost={deletePost} />
       <NewPost />
     </div>
   );

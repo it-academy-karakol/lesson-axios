@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default ({ id }) => {
+export default ({ id, deletePost }) => {
   const [post, setPost] = useState(null);
 
   useEffect(() => {
@@ -27,6 +27,7 @@ export default ({ id }) => {
         <h2>{post.title}</h2>
         <div className="author">{post.author}</div>
         <p>{post.body}</p>
+        <button onClick={deletePost}>Delete</button>
       </>
     );
   }

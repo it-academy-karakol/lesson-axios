@@ -6,15 +6,21 @@ export default ({ id }) => {
 
   useEffect(() => {
     if (id) {
+      setPost(null);
       axios.get('https://jsonplaceholder.typicode.com/posts/' + id)
         .then(response => {
-          console.log(response.data);
           setPost(response.data);
         });
     }
   }, [ id ]);
 
+  // No ID and no loaded post
   let postOutput = <p>Select a blog post</p>;
+  // ID selected post is loading
+  if (id) {
+    postOutput = <p>Loading...</p>;
+  }
+  // ID selected post is loaded
   if (post) {
     postOutput = (
       <>

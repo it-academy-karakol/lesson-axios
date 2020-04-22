@@ -20,13 +20,16 @@ export default () => {
       });
   }, []);
 
-  const postsOutput = posts.map(
-    post => <Post
-      key={post.id}
-      title={post.title}
-      author={post.author}
-      click={() => setSelectedPostId(post.id)} />
-  );
+  let postsOutput = <p>Loading...</p>;
+  if (posts.length) {
+    postsOutput = posts.map(
+      post => <Post
+        key={post.id}
+        title={post.title}
+        author={post.author}
+        click={() => setSelectedPostId(post.id)} />
+    );
+  }
 
   return (
     <div className="Blog">

@@ -8,12 +8,13 @@ export default () => {
   useEffect(() => {
     axios.get('https://jsonplaceholder.typicode.com/posts')
       .then(response => {
-        // Add fake author field
-        response.data.forEach(post => {
-          post.author = "Bakyt";
-        });
+        // Get only first 8 posts
+        const data = response.data.slice(0, 8);
 
-        setPosts(response.data);
+        // Add fake author field
+        data.forEach(post => post.author = "Bakyt");
+
+        setPosts(data);
       });
   }, []);
 
@@ -24,7 +25,6 @@ export default () => {
   return (
     <div className="Blog">
       <h1>Blog</h1>
-      {postsOutput}
     </div>
   );
 }

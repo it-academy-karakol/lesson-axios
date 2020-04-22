@@ -7,7 +7,7 @@ export default ({ id, deletePost }) => {
   useEffect(() => {
     if (id) {
       setPost(null);
-      axios.get('https://jsonplaceholder.typicode.com/posts/' + id)
+      axios.get('/posts/' + id)
         .then(response => {
           setPost(response.data);
         });

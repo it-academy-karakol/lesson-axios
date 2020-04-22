@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import Post from '../../components/Post';
 import FullPost from './FullPost/FullPost';
 import NewPost from './NewPost/NewPost';
@@ -10,14 +10,14 @@ export default () => {
   const [error, setError] = useState(null);
 
   function deletePost() {
-    axios.delete('https://jsonplaceholder.typicode.com/posts/' + selectedPostId)
+    axios.delete('/posts/' + selectedPostId)
       .then(response => {
         console.log(response);
       });
   }
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/postsssssss')
+    axios.get('/posts')
       .then(response => {
         // Get only first 8 posts
         const data = response.data.slice(0, 6);
@@ -34,7 +34,7 @@ export default () => {
 
   let postsOutput = <p>Loading...</p>;
   if (error) {
-    postsOutput = <p class="error">Error loading posts from server!</p>;
+    postsOutput = <p className="error">Error loading posts from server!</p>;
   }
   if (posts.length) {
     postsOutput = posts.map(

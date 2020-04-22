@@ -7,6 +7,7 @@ import NewPost from './NewPost/NewPost';
 export default () => {
   const [posts, setPosts] = useState([]);
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const [error, setError] = useState(null);
 
   function deletePost() {
     axios.delete('https://jsonplaceholder.typicode.com/posts/' + selectedPostId)
@@ -16,7 +17,7 @@ export default () => {
   }
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
+    axios.get('https://jsonplaceholder.typicode.com/postsssssss')
       .then(response => {
         // Get only first 8 posts
         const data = response.data.slice(0, 6);
@@ -25,10 +26,16 @@ export default () => {
         data.forEach(post => post.author = "Bakyt");
 
         setPosts(data);
+      })
+      .catch(error => {
+        setError(true);
       });
   }, []);
 
   let postsOutput = <p>Loading...</p>;
+  if (error) {
+    postsOutput = <p class="error">Error loading posts from server!</p>;
+  }
   if (posts.length) {
     postsOutput = posts.map(
       post => <Post

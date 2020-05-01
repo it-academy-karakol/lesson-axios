@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "../../axios";
+import { useHistory } from "react-router-dom";
 
 export default () => {
+  const history = useHistory();
   const [newPost, setNewPost] = useState({
-    title: '',
-    body: '',
+    title: "",
+    body: "",
+    author: "",
   });
 
   function titleChange(event) {
@@ -16,15 +19,27 @@ export default () => {
   function bodyChange(event) {
     setNewPost({
       ...newPost,
-      body: event.target.value
+      body: event.target.value,
+    });
+  }
+
+  function authorChange(event) {
+    setNewPost({
+      ...newPost,
+      author: event.target.value,
     });
   }
 
   function submitPost() {
-    axios.post('/posts', { ...newPost })
-      .then(response => {
-        console.log(response);
+    axios.post("/posts.json", { ...newPost }).then(({ data }) => {
+      setNewPost({
+        title: "",
+        body: "",
+        author: "",
       });
+
+      history.push("/posts/" + data.name);
+    });
   }
 
   return (
@@ -37,7 +52,11 @@ export default () => {
         <div>Body:</div>
         <textarea onChange={bodyChange} value={newPost.body}></textarea>
       </div>
+      <div>
+        <div>Author:</div>
+        <input type="text" onChange={authorChange} value={newPost.author} />
+      </div>
       <button onClick={submitPost}>Submit</button>
     </div>
   );
-}
+};

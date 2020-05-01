@@ -5,6 +5,7 @@ import Posts from "./containers/Posts/Posts";
 import FullPost from "./containers/FullPost/FullPost";
 import NewPost from "./containers/NewPost/NewPost";
 import Navigation from "./components/Navigation/Navigation";
+import PageNotFound from "./components/PageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           </Route>
           <Route path="/new-post">
             <NewPost />
+          </Route>
+          <Route path="*">
+            <PageNotFound />
           </Route>
         </Switch>
       </div>

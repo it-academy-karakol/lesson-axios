@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "../../axios";
+import PageNotFound from "../../components/PageNotFound/PageNotFound";
 
 export default () => {
   const history = useHistory();
   const { id } = useParams();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState(false);
 
   function deletePost() {
     axios.delete("/posts/" + id + ".json").then((response) => {
@@ -19,11 +20,10 @@ export default () => {
     });
   }, [id]);
 
-  // No ID and no loaded post
-  let postOutput = <p>Select a blog post</p>;
   // ID selected post is loading
-  if (id) {
-    postOutput = <p>Loading...</p>;
+  let postOutput = <p>Loading...</p>;
+  if (post === null) {
+    postOutput = <PageNotFound />;
   }
   // ID selected post is loaded
   if (post) {

@@ -16,7 +16,7 @@ export default () => {
   let postsOutput = <p>Loading...</p>;
   if (posts) {
     postsOutput = Object.keys(posts).map((id) => (
-      <Post key={id} {...posts[id]} />
+      <Post key={id} id={id} {...posts[id]} />
     ));
   }
   if (posts === null) {

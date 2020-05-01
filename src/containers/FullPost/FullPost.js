@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "../../axios";
 
 export default () => {
   const { id } = useParams();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    if (id) {
-      setPost(null);
-      axios.get("/posts/" + id).then((response) => {
-        setPost(response.data);
-      });
-    }
+    axios.get("/posts/" + id + ".json").then((response) => {
+      setPost(response.data);
+    });
   }, [id]);
 
   // No ID and no loaded post

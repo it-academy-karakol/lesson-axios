@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-export default ({ id, deletePost }) => {
+export default () => {
+  const { id } = useParams();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
     if (id) {
       setPost(null);
-      axios.get('/posts/' + id)
-        .then(response => {
-          setPost(response.data);
-        });
+      axios.get("/posts/" + id).then((response) => {
+        setPost(response.data);
+      });
     }
-  }, [ id ]);
+  }, [id]);
 
   // No ID and no loaded post
   let postOutput = <p>Select a blog post</p>;
@@ -27,14 +28,10 @@ export default ({ id, deletePost }) => {
         <h2>{post.title}</h2>
         <div className="author">{post.author}</div>
         <p>{post.body}</p>
-        <button onClick={deletePost}>Delete</button>
+        <button onClick={() => {}}>Delete</button>
       </>
     );
   }
 
-  return (
-    <article className="FullPost">
-      {postOutput}
-    </article>
-  );
-}
+  return <article className="FullPost">{postOutput}</article>;
+};

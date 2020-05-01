@@ -1,21 +1,28 @@
 import React from "react";
 import "./App.css";
-import Blog from "./containers/Blog/Blog";
-import { BrowserRouter, NavLink } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Posts from "./containers/Posts/Posts";
+import FullPost from "./containers/FullPost/FullPost";
+import NewPost from "./containers/NewPost/NewPost";
+import Navigation from "./components/Navigation/Navigation";
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/new-post">New post</NavLink>
-          </li>
-        </ul>
-        <Blog />
+        <Navigation />
+
+        <Switch>
+          <Route path="/" exact>
+            <Posts />
+          </Route>
+          <Route path="/post/:id">
+            <FullPost />
+          </Route>
+          <Route path="/new-post">
+            <NewPost />
+          </Route>
+        </Switch>
       </div>
     </BrowserRouter>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Posts from "./containers/Posts/Posts";
 import FullPost from "./containers/FullPost/FullPost";
 import NewPost from "./containers/NewPost/NewPost";
@@ -14,14 +14,17 @@ function App() {
         <Navigation />
 
         <Switch>
+          <Route path="/" exact>
+            <Redirect to="/posts" />
+          </Route>
           <Route path="/posts" exact>
             <Posts />
           </Route>
-          <Route path="/posts/:id">
-            <FullPost />
-          </Route>
           <Route path="/posts/new">
             <NewPost />
+          </Route>
+          <Route path="/posts/:id">
+            <FullPost />
           </Route>
           <Route path="*">
             <PageNotFound />

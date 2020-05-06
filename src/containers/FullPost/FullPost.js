@@ -10,7 +10,7 @@ export default () => {
 
   function deletePost() {
     axios.delete("/posts/" + id + ".json").then((response) => {
-      history.push("/");
+      history.replace("/posts");
     });
   }
 

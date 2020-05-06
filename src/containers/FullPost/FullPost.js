@@ -26,7 +26,10 @@ export default () => {
         <h2>{post.title}</h2>
         <div className="author">{post.author}</div>
         <p>{post.body}</p>
-        <Link to={"/posts/" + id + "/delete"} style={{ color: "red" }}>
+        <Link
+          to={"/posts/" + id + "/delete?title=" + post.title}
+          style={{ color: "red" }}
+        >
           Delete
         </Link>
       </>

@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, Link, Route } from "react-router-dom";
 import axios from "../../axios";
 import PageNotFound from "../../components/PageNotFound/PageNotFound";
 
 export default () => {
-  const history = useHistory();
   const { id } = useParams();
   const [post, setPost] = useState(false);
-
-  function deletePost() {
-    axios.delete("/posts/" + id + ".json").then((response) => {
-      history.replace("/posts");
-    });
-  }
 
   useEffect(() => {
     axios.get("/posts/" + id + ".json").then((response) => {
@@ -25,6 +18,7 @@ export default () => {
   if (post === null) {
     postOutput = <PageNotFound />;
   }
+
   // ID selected post is loaded
   if (post) {
     postOutput = (
@@ -32,7 +26,9 @@ export default () => {
         <h2>{post.title}</h2>
         <div className="author">{post.author}</div>
         <p>{post.body}</p>
-        <button onClick={deletePost}>Delete</button>
+        <Link to={"/posts/" + id + "/delete"} style={{ color: "red" }}>
+          Delete
+        </Link>
       </>
     );
   }

@@ -6,6 +6,7 @@ import FullPost from "./containers/FullPost/FullPost";
 import NewPost from "./containers/NewPost/NewPost";
 import Navigation from "./components/Navigation/Navigation";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
+import DeletePost from "./components/DeletePost/DeletePost";
 
 function App() {
   return (
@@ -23,8 +24,11 @@ function App() {
           <Route path="/posts/new">
             <NewPost />
           </Route>
-          <Route path="/posts/:id">
+          <Route path="/posts/:id" exact>
             <FullPost />
+          </Route>
+          <Route path="/posts/:id/delete">
+            <DeletePost />
           </Route>
           <Route path="*">
             <PageNotFound />

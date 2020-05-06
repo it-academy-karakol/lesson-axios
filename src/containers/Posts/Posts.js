@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "../../axios";
 import Post from "../../components/Post/Post";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
-export default () => {
+export default withErrorHandler(() => {
   const [posts, setPosts] = useState(false);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
       .get("/posts.json")
       .then((response) => setPosts(response.data))
-      .catch((error) => setError(true));
+      .catch((error) => {});
   }, []);
 
   let postsOutput = <p>Loading...</p>;
@@ -22,9 +22,6 @@ export default () => {
   if (posts === null) {
     postsOutput = <p>No blog posts found!</p>;
   }
-  if (error) {
-    postsOutput = <p className="error">Error loading posts from server!</p>;
-  }
 
   return <div className="Posts">{postsOutput}</div>;
-};
+}, axios);

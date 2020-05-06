@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, Route } from "react-router-dom";
 import axios from "../../axios";
 import PageNotFound from "../../components/PageNotFound/PageNotFound";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
-export default () => {
+export default withErrorHandler(() => {
   const { id } = useParams();
   const [post, setPost] = useState(false);
 
@@ -37,4 +38,4 @@ export default () => {
   }
 
   return <article className="FullPost">{postOutput}</article>;
-};
+}, axios);

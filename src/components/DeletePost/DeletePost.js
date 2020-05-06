@@ -1,12 +1,13 @@
 import React from "react";
 import { useHistory, useParams, useLocation } from "react-router-dom";
 import axios from "../../axios";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export default () => {
+export default withErrorHandler(() => {
   const query = useQuery();
   const { id } = useParams();
   const history = useHistory();
@@ -24,4 +25,4 @@ export default () => {
       <button onClick={deletePost}>Delete</button>
     </div>
   );
-};
+}, axios);

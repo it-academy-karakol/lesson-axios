@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import axios from "../../axios";
 import { useHistory } from "react-router-dom";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
-export default () => {
+export default withErrorHandler(() => {
   const history = useHistory();
   const [newPost, setNewPost] = useState({
     title: "",
@@ -59,4 +60,4 @@ export default () => {
       <button onClick={submitPost}>Submit</button>
     </div>
   );
-};
+}, axios);

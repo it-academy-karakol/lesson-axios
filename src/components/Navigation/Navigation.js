@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 export default () => (
   <ul className="Navigation">
     <li>
-      <NavLink to="/" exact>
-        Home
+      <NavLink to="/posts" exact>
+        Posts
       </NavLink>
     </li>
     <li>
-      <NavLink to="/new-post">New post</NavLink>
+      <NavLink to="/posts/new">New post</NavLink>
     </li>
   </ul>
 );

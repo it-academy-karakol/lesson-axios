@@ -38,7 +38,7 @@ export default () => {
         author: "",
       });
 
-      history.push("/post/" + data.name);
+      history.push("/posts/" + data.name);
     });
   }
 

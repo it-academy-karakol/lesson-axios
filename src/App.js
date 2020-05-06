@@ -14,13 +14,13 @@ function App() {
         <Navigation />
 
         <Switch>
-          <Route path="/" exact>
+          <Route path="/posts" exact>
             <Posts />
           </Route>
-          <Route path="/post/:id">
+          <Route path="/posts/:id">
             <FullPost />
           </Route>
-          <Route path="/new-post">
+          <Route path="/posts/new">
             <NewPost />
           </Route>
           <Route path="*">

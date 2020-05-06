@@ -7,7 +7,7 @@ export default ({ id, title, author }) => {
       <h3>{title}</h3>
       <span className="author">{author}</span>
       <br />
-      <Link to={"/post/" + id}>Read more</Link>
+      <Link to={"/posts/" + id}>Read more</Link>
     </div>
   );
 };

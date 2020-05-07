@@ -1,0 +1,10 @@
+.DeletePost {
+  text-align: center;
+}
+.DeletePost button {
+  background-color: red;
+  border-color: red;
+}
+.DeletePost button:hover {
+  color: red;
+}

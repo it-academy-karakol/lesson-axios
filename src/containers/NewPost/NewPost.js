@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "../../axios";
+import classes from "./NewPost.module.css";
 import { useHistory } from "react-router-dom";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
@@ -33,6 +34,11 @@ export default withErrorHandler(() => {
   }
 
   function submitPost() {
+    if (!newPost.title || !newPost.body || !newPost.author) {
+      alert("Fill the fields!");
+      return;
+    }
+
     setLoading(true);
     axios
       .post("/posts.json", { ...newPost })
@@ -50,32 +56,32 @@ export default withErrorHandler(() => {
   }
 
   return (
-    <div className="NewPost">
+    <div className={classes.NewPost}>
       <h1>New Post</h1>
       <div>
-        <div>Title:</div>
         <input
           type="text"
           onChange={titleChange}
           value={newPost.title}
           disabled={loading}
+          placeholder="Title"
         />
       </div>
       <div>
-        <div>Body:</div>
         <textarea
           onChange={bodyChange}
           value={newPost.body}
           disabled={loading}
+          placeholder="Body"
         ></textarea>
       </div>
       <div>
-        <div>Author:</div>
         <input
           type="text"
           onChange={authorChange}
           value={newPost.author}
           disabled={loading}
+          placeholder="Author"
         />
       </div>
       <button onClick={submitPost} disabled={loading}>

@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-style: italic;
+  text-align: center;
+}
+input,
+textarea,
+button {
+  width: 100%;
+  border: 1px solid black;
+  padding: 0.5em;
+  margin: 0 0 0.5em 0;
+  font-size: 1.2rem;
+  font-family: "Playfair Display", serif;
+}
+button {
+  width: auto;
+  background-color: black;
+  color: white;
+}
+button:hover {
+  background-color: white;
+  color: black;
+}

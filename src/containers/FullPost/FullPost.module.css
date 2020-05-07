@@ -1,0 +1,15 @@
+.FullPost aside {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em 0;
+  border-bottom: 5px solid rgb(245, 245, 245);
+}
+.FullPost {
+  text-align: center;
+}
+.FullPost p {
+  text-align: justify;
+}
+.delete {
+  color: red;
+}

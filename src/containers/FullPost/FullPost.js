@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "../../axios";
+import classes from "./FullPost.module.css";
 import PageNotFound from "../../components/PageNotFound/PageNotFound";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
@@ -26,7 +27,7 @@ export default withErrorHandler(() => {
   useEffect(loadFullPost, [id]);
 
   // ID selected post is loading
-  let postOutput = <p>Loading...</p>;
+  let postOutput = <span>Loading...</span>;
   if (post === null) {
     postOutput = <PageNotFound />;
   }
@@ -39,17 +40,19 @@ export default withErrorHandler(() => {
     postOutput = (
       <>
         <h1>{post.title}</h1>
-        <div className="author">{post.author}</div>
+        <aside>
+          <span>{post.author}</span>
+          <Link
+            to={"/posts/" + id + "/delete?title=" + post.title}
+            className={classes.delete}
+          >
+            Delete
+          </Link>
+        </aside>
         <p>{post.body}</p>
-        <Link
-          to={"/posts/" + id + "/delete?title=" + post.title}
-          style={{ color: "red" }}
-        >
-          Delete
-        </Link>
       </>
     );
   }
 
-  return <article className="FullPost">{postOutput}</article>;
+  return <div className={classes.FullPost}>{postOutput}</div>;
 }, axios);

@@ -35,7 +35,7 @@ export default withErrorHandler(() => {
   function submitPost() {
     setLoading(true);
     axios
-      .post("/posts", { ...newPost })
+      .post("/posts.json", { ...newPost })
       .then(({ data }) => {
         setNewPost({
           title: "",

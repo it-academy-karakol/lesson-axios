@@ -23,5 +23,10 @@ export default withErrorHandler(() => {
     postsOutput = <p>No blog posts found!</p>;
   }
 
-  return <div className="Posts">{postsOutput}</div>;
+  return (
+    <div className="Posts">
+      <h1>Posts</h1>
+      {postsOutput}
+    </div>
+  );
 }, axios);

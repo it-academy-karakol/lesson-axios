@@ -6,7 +6,7 @@ import FullPost from "./containers/FullPost/FullPost";
 import NewPost from "./containers/NewPost/NewPost";
 import Navigation from "./components/Navigation/Navigation";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
-import DeletePost from "./components/DeletePost/DeletePost";
+import DeletePost from "./containers/DeletePost/DeletePost";
 
 function App() {
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link, Route } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "../../axios";
 import PageNotFound from "../../components/PageNotFound/PageNotFound";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
@@ -24,7 +24,7 @@ export default withErrorHandler(() => {
   if (post) {
     postOutput = (
       <>
-        <h2>{post.title}</h2>
+        <h1>{post.title}</h1>
         <div className="author">{post.author}</div>
         <p>{post.body}</p>
         <Link

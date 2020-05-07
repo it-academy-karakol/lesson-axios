@@ -7,6 +7,7 @@ export default ({ children, show, hideCallback }) => {
   if (show) {
     modalClasses.push(classes.show);
   }
+  console.log(children);
 
   return (
     <>

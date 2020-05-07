@@ -20,6 +20,10 @@
   flex-flow: row wrap;
   justify-content: center;
 }
+.Posts h1 {
+  width: 100%;
+  text-align: center;
+}
 .Blog h1 {
   width: 100%;
   text-align: center;

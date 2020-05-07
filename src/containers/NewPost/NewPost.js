@@ -46,7 +46,7 @@ export default withErrorHandler(() => {
 
         history.push("/posts/" + data.name);
       })
-      .catch((error) => {});
+      .catch((error) => setLoading(false));
   }
 
   return (

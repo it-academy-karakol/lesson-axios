@@ -5,13 +5,21 @@ import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 export default withErrorHandler(() => {
   const [posts, setPosts] = useState(false);
+  const [error, setError] = useState(false);
 
-  useEffect(() => {
+  function loadPosts() {
     axios
       .get("/posts.json")
       .then((response) => setPosts(response.data))
-      .catch((error) => {});
-  }, []);
+      .catch((error) => setError(true));
+  }
+
+  function onRetry() {
+    setError(false);
+    loadPosts();
+  }
+
+  useEffect(loadPosts, []);
 
   let postsOutput = <p>Loading...</p>;
   if (posts) {
@@ -21,6 +29,9 @@ export default withErrorHandler(() => {
   }
   if (posts === null) {
     postsOutput = <p>No blog posts found!</p>;
+  }
+  if (!posts && error) {
+    postsOutput = <button onClick={onRetry}>Retry</button>;
   }
 
   return (

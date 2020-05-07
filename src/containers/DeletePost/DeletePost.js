@@ -15,9 +15,12 @@ export default withErrorHandler(() => {
 
   function deletePost() {
     setLoading(true);
-    axios.delete("/posts/" + id + ".json").then((response) => {
-      history.replace("/posts");
-    });
+    axios
+      .delete("/posts/" + id + "")
+      .then((response) => {
+        history.replace("/posts");
+      })
+      .catch((error) => setLoading(false));
   }
 
   return (

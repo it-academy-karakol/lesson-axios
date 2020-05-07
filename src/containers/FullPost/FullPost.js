@@ -7,17 +7,31 @@ import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 export default withErrorHandler(() => {
   const { id } = useParams();
   const [post, setPost] = useState(false);
+  const [error, setError] = useState(false);
 
-  useEffect(() => {
-    axios.get("/posts/" + id + ".json").then((response) => {
-      setPost(response.data);
-    });
-  }, [id]);
+  function loadFullPost() {
+    axios
+      .get("/posts/" + id + ".json")
+      .then((response) => {
+        setPost(response.data);
+      })
+      .catch((error) => setError(true));
+  }
+
+  function onRetry() {
+    setError(false);
+    loadFullPost();
+  }
+
+  useEffect(loadFullPost, [id]);
 
   // ID selected post is loading
   let postOutput = <p>Loading...</p>;
   if (post === null) {
     postOutput = <PageNotFound />;
+  }
+  if (!post && error) {
+    postOutput = <button onClick={onRetry}>Retry</button>;
   }
 
   // ID selected post is loaded
